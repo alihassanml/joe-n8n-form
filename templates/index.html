@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Request Your Sofia Feature!</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #E8E4F3 0%, #F0EDFF 100%);
+            min-height: 100vh;
+            padding: 0;
+        }
+
+        .logo-container {
+            display: none;
+        }
+
+        .main-container {
+            display: flex;
+            max-width: 1400px;
+            margin: 0 auto;
+            min-height: 100vh;
+        }
+
+        .left-content {
+            flex: 1;
+            padding: 40px 60px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            padding-top: 60px;
+        }
+
+        .logo {
+            width: 180px;
+            height: 70px;
+            border-radius: 12px;
+            margin-bottom: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            font-weight: bold;
+            color: #8B5FBF;
+        }
+
+        .left-content h1 {
+            font-size: 4rem;
+            font-weight: 700;
+            color: #8B5FBF;
+            line-height: 1.1;
+            margin-bottom: 30px;
+        }
+
+        .left-content p {
+            font-size: 1.2rem;
+            color: #4A5568;
+            line-height: 1.6;
+            max-width: 500px;
+        }
+
+        .right-content {
+            flex: 1;
+            padding: 40px;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            padding-top: 40px;
+        }
+
+        .form-container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(139, 95, 191, 0.1);
+            width: 100%;
+            max-width: 650px;
+        }
+
+        .form-title {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #8B5FBF;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #4A5568;
+            font-size: 14px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="url"],
+        input[type="number"],
+        input[type="date"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #E2E8F0;
+            border-radius: 8px;
+            font-size: 16px;
+            color: gray;
+            font-family: inherit;
+            background: white;
+            transition: all 0.3s ease;
+        }
+
+        input::placeholder,
+        textarea::placeholder {
+            color: #A0AEC0;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #8B5FBF;
+            box-shadow: 0 0 0 3px rgba(139, 95, 191, 0.1);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        /* Multi-select styles */
+        .multi-select {
+            position: relative;
+            width: 100%;
+        }
+
+        .multi-select-container {
+            width: 100%;
+            min-height: 50px;
+            padding: 10px;
+            border: 1px solid #E2E8F0;
+            border-radius: 8px;
+            background: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .multi-select-container:hover,
+        .multi-select-container.active {
+            border-color: #8B5FBF;
+            box-shadow: 0 0 0 3px rgba(139, 95, 191, 0.1);
+        }
+
+        .selected-items {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            min-height: 30px;
+            align-items: center;
+        }
+
+        .selected-item {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(139, 95, 191, 0.1);
+            color: #8B5FBF;
+            padding: 6px 10px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .selected-item .remove-btn {
+            cursor: pointer;
+            font-size: 16px;
+            line-height: 1;
+            color: #8B5FBF;
+            font-weight: bold;
+            transition: color 0.2s ease;
+        }
+
+        .selected-item .remove-btn:hover {
+            color: #7C3AED;
+        }
+
+        .placeholder-text {
+            color: #A0AEC0;
+            font-size: 16px;
+        }
+
+        .multi-select-dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: white;
+            border: 1px solid #E2E8F0;
+            border-top: none;
+            border-radius: 0 0 8px 8px;
+            z-index: 1000;
+            max-height: 250px;
+            overflow-y: auto;
+            display: none;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            margin-top: 2px;
+        }
+
+        .multi-select-dropdown.show {
+            display: block;
+        }
+
+        .multi-select-option {
+            padding: 12px 15px;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+            border-bottom: 1px solid #F7FAFC;
+            display: flex;
+            align-items: center;
+        }
+
+        .multi-select-option:last-child {
+            border-bottom: none;
+        }
+
+        .multi-select-option:hover {
+            background-color: #F7FAFC;
+        }
+
+        .multi-select-option.selected {
+            background-color: rgba(139, 95, 191, 0.1);
+            color: #8B5FBF;
+        }
+
+        .multi-select-option input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            margin-right: 10px;
+            accent-color: #8B5FBF;
+            cursor: pointer;
+        }
+
+        .multi-select-option label {
+            margin: 0;
+            cursor: pointer;
+            flex: 1;
+        }
+
+        .number-select {
+            position: relative;
+            width: 100%;
+        }
+
+        .submit-btn {
+            width: 100%;
+            background: #8B5FBF;
+            color: white;
+            border: none;
+            padding: 18px;
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+        }
+
+        .submit-btn:hover {
+            background: #7C3AED;
+            transform: translateY(-1px);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+
+        .footer {
+            text-align: center;
+            padding: 20px;
+            color: #718096;
+            font-size: 14px;
+        }
+
+        .success-message,
+        .error-message {
+            display: none;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            text-align: center;
+            font-weight: 500;
+        }
+
+        .success-message {
+            background: rgba(16, 185, 129, 0.1);
+            color: #059669;
+            border: 1px solid rgba(16, 185, 129, 0.3);
+        }
+
+        .error-message {
+            background: rgba(239, 68, 68, 0.1);
+            color: #DC2626;
+            border: 1px solid rgba(239, 68, 68, 0.3);
+        }
+
+        @media (max-width: 1024px) {
+            .main-container {
+                flex-direction: column;
+            }
+
+            .left-content {
+                padding: 40px;
+                text-align: center;
+            }
+
+            .left-content h1 {
+                font-size: 3rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .logo-container {
+                padding: 30px 20px;
+            }
+
+            .logo {
+                width: 150px;
+                height: 60px;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .right-content {
+                padding: 20px;
+            }
+
+            .form-container {
+                padding: 30px 20px;
+                max-width: 100%;
+            }
+
+            .left-content h1 {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main-container">
+        <div class="left-content">
+            <div class="logo">
+                <img src="https://swim.sofiapulse.com/assets/logo-BWhfv7lF.svg" alt="Logo"
+                    style="max-width: 100%; max-height: 100%; object-fit: contain;"
+                    onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <span style="display: none;">Your Logo Here</span>
+            </div>
+            <h1 style="margin-top: 60px;">kick-start<br>your journey<br>here.</h1>
+            <p>This page offers a quick and easy way to request a mockup. Once submitted, our team will work their magic
+                and provide you with a unified link to review multiple ad creative options.</p>
+        </div>
+
+        <div class="right-content">
+            <div class="form-container">
+                <h2 class="form-title">Request Your Sofia Feature!</h2>
+
+                <div class="success-message" id="successMessage">
+                    🎉 Your feature request has been submitted successfully! Our team will get back to you soon.
+                </div>
+
+                <div class="error-message" id="errorMessage">
+                    ❌ There was an error submitting your request. Please try again.
+                </div>
+
+                <form id="sofiaForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" required placeholder="Enter your name">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required placeholder="Enter your email">
+                        </div>
+                        
+                    </div>
+
+                    <!-- Add this after the email field and before the campaign field -->
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="clientname">Client Name</label>
+                            <input type="text" id="clientname" name="clientname" required placeholder="Enter Client name">
+                            
+                        </div>
+                        <div class="form-group">
+                            <label for="brandname">Brand Name</label>
+                            <input type="text" id="brandname" name="brandname" required placeholder="Enter Brand name">
+                            
+                        </div>
+                        
+                    </div>
+                    <div class="form-group">
+                            <label for="vertical">Vertical</label>
+                            <select id="vertical" name="vertical" required>
+                                <option value="">Select Vertical</option>
+                                <option value="Fashion & Apparel">Fashion & Apparel</option>
+                                <option value="Automotive">Automotive</option>
+                                <option value="Motored Vehicles">Motored Vehicles</option>
+                                <option value="Aeronotics">Aeronotics</option>
+                                <option value="Electronics">Electronics</option>
+                                <option value="Tech">Tech</option>
+                                <option value="Health & Wellness">Health & Wellness</option>
+                                <option value="Food & Beverage">Food & Beverage</option>
+                                <option value="Pharmaceuticals">Pharmaceuticals</option>
+                                <option value="Home & Living">Home & Living</option>
+                                <option value="Travel & Hospitality">Travel & Hospitality</option>
+                                <option value="Finance & Insurance">Finance & Insurance</option>
+                                <option value="Entertainment & Media">Entertainment & Media</option>
+                                <option value="Education">Education</option>
+                                <option value="Sports & Outdoor">Sports & Outdoor</option>
+                                <option value="Luxury Goods">Luxury Goods</option>
+                                <option value="Pet Products">Pet Products</option>
+                                <option value="CPG">CPG</option>
+                                <option value="Food Service & Hospitality">Food Service & Hospitality</option>
+                                <option value="Employment & Jobs">Employment & Jobs</option>
+                                <option value="Digital">Digital</option>
+                                <option value="Unsure">Unsure</option>
+                                <option value="Other Services">Other Services</option>
+                                <option value="Alcohol">Alcohol</option>
+                                <option value="Retail">Retail</option>
+                                <option value="Cosmetics">Cosmetics</option>
+                                <option value="Telecom">Telecom</option>
+                                <option value="Lottery">Lottery</option>
+                                <option value="Government">Government</option>
+                                <option value="Utilities">Utilities</option>
+                                <option value="Tabacco">Tabacco</option>
+                                <option value="Banking">Banking</option>
+                                <option value="Recreational watercraft">Recreational watercraft</option>
+                                <option value="Beauty & Cosmetics">Beauty & Cosmetics</option>
+                                <option value="Elections">Elections</option>
+                                <option value="Event">Event</option>
+                            </select>
+                        </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="campaign">Campaign</label>
+                            <input type="text" id="campaign" name="campaign" required placeholder="Enter campaign name">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="mainUrl">Main URL</label>
+                            <input type="text" id="mainUrl" name="mainUrl" required placeholder="Enter your URL">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="briefInfo">Brief Information</label>
+                        <textarea id="briefInfo" name="briefInfo" required
+                            placeholder="Provide some information"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Select channels (multiple)</label>
+                        <div class="multi-select" data-name="channels">
+                            <div class="multi-select-container">
+                                <div class="selected-items">
+                                    <span class="placeholder-text">Select channels</span>
+                                </div>
+                            </div>
+                            <div class="multi-select-dropdown">
+                                <div class="multi-select-option" data-value="display">
+                                    <input type="checkbox" id="channel-display" value="display">
+                                    <label for="channel-display">Display</label>
+                                </div>
+                                <div class="multi-select-option" data-value="olv">
+                                    <input type="checkbox" id="channel-olv" value="olv">
+                                    <label for="channel-olv">OLV</label>
+                                </div>
+                                <div class="multi-select-option" data-value="ctv">
+                                    <input type="checkbox" id="channel-ctv" value="ctv">
+                                    <label for="channel-ctv">CTV</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Select sizes (multiple)</label>
+                        <div class="multi-select" data-name="sizes">
+                            <div class="multi-select-container">
+                                <div class="selected-items">
+                                    <span class="placeholder-text">Select sizes</span>
+                                </div>
+                            </div>
+                            <div class="multi-select-dropdown">
+                                <div class="multi-select-option" data-value="300x600">
+                                    <input type="checkbox" id="size-300x600" value="300x600">
+                                    <label for="size-300x600">300x600</label>
+                                </div>
+                                <div class="multi-select-option" data-value="300x250">
+                                    <input type="checkbox" id="size-300x250" value="300x250">
+                                    <label for="size-300x250">300x250</label>
+                                </div>
+                                <div class="multi-select-option" data-value="340x600">
+                                    <input type="checkbox" id="size-340x600" value="340x600">
+                                    <label for="size-340x600">340x600</label>
+                                </div>
+                                <div class="multi-select-option" data-value="970x250">
+                                    <input type="checkbox" id="size-970x250" value="970x250">
+                                    <label for="size-970x250">970x250</label>
+                                </div>
+                                <div class="multi-select-option" data-value="160x600">
+                                    <input type="checkbox" id="size-160x600" value="160x600">
+                                    <label for="size-160x600">160x600</label>
+                                </div>
+                                <div class="multi-select-option" data-value="320x480">
+                                    <input type="checkbox" id="size-320x480" value="320x480">
+                                    <label for="size-320x480">320x480</label>
+                                </div>
+                                <div class="multi-select-option" data-value="300x260">
+                                    <input type="checkbox" id="size-300x260" value="300x260">
+                                    <label for="size-300x260">300x260</label>
+                                </div>
+                                <div class="multi-select-option" data-value="300x460">
+                                    <input type="checkbox" id="size-300x460" value="300x460">
+                                    <label for="size-300x460">300x460</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Select types (multiple)</label>
+                        <div class="multi-select" data-name="types">
+                            <div class="multi-select-container">
+                                <div class="selected-items">
+                                    <span class="placeholder-text">Select types</span>
+                                </div>
+                            </div>
+                            <div class="multi-select-dropdown">
+                                <div class="multi-select-option" data-value="showrooms">
+                                    <input type="checkbox" id="type-showrooms" value="showrooms">
+                                    <label for="type-showrooms">Showrooms</label>
+                                </div>
+                                <div class="multi-select-option" data-value="stories">
+                                    <input type="checkbox" id="type-stories" value="stories">
+                                    <label for="type-stories">Stories</label>
+                                </div>
+                                <div class="multi-select-option" data-value="video">
+                                    <input type="checkbox" id="type-video" value="video">
+                                    <label for="type-video">Video</label>
+                                </div>
+                                <div class="multi-select-option" data-value="chatbot">
+                                    <input type="checkbox" id="type-chatbot" value="chatbot">
+                                    <label for="type-chatbot">Chatbot</label>
+                                </div>
+                                <div class="multi-select-option" data-value="survey">
+                                    <input type="checkbox" id="type-survey" value="survey">
+                                    <label for="type-survey">Survey</label>
+                                </div>
+                                <div class="multi-select-option" data-value="quiz">
+                                    <input type="checkbox" id="type-quiz" value="quiz">
+                                    <label for="type-quiz">Quiz</label>
+                                </div>
+                                <div class="multi-select-option" data-value="poll">
+                                    <input type="checkbox" id="type-poll" value="poll">
+                                    <label for="type-poll">Poll</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="campaignPeriod">Campaign Live Period</label>
+                            <input type="date" id="campaignPeriod" name="campaignPeriod">
+                        </div>
+                        <div class="form-group">
+                            <label for="estimatedVolume">Estimated Volume of Impressions</label>
+                            <input type="text" id="estimatedVolume" name="estimatedVolume" 
+                                placeholder="Enter volume">
+                        </div>
+                    </div>
+
+                    <button type="submit" class="submit-btn">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        © 2025 SofiaPulse. All Rights Reserved.
+    </div>
+
+    <script>
+        // Multi-select functionality
+        class MultiSelect {
+            constructor(element) {
+                this.element = element;
+                this.container = element.querySelector('.multi-select-container');
+                this.dropdown = element.querySelector('.multi-select-dropdown');
+                this.selectedItemsContainer = element.querySelector('.selected-items');
+                this.options = element.querySelectorAll('.multi-select-option');
+                this.name = element.getAttribute('data-name');
+                this.selectedValues = new Set();
+
+                this.init();
+            }
+
+            init() {
+                // Toggle dropdown
+                this.container.addEventListener('click', (e) => {
+                    if (e.target.classList.contains('remove-btn')) {
+                        return;
+                    }
+                    e.stopPropagation();
+                    this.toggleDropdown();
+                });
+
+                // Handle option selection
+                this.options.forEach(option => {
+                    const checkbox = option.querySelector('input[type="checkbox"]');
+
+                    option.addEventListener('click', (e) => {
+                        e.stopPropagation(); // Prevent dropdown from closing
+
+                        if (e.target.type !== 'checkbox') {
+                            e.preventDefault();
+                            checkbox.checked = !checkbox.checked;
+                        }
+
+                        const value = checkbox.value;
+                        const label = option.querySelector('label').textContent;
+
+                        if (checkbox.checked) {
+                            this.addSelection(value, label);
+                            option.classList.add('selected');
+                        } else {
+                            this.removeSelection(value);
+                            option.classList.remove('selected');
+                        }
+                    });
+                });
+            }
+
+            toggleDropdown() {
+                // Close other dropdowns
+                document.querySelectorAll('.multi-select-dropdown').forEach(dd => {
+                    if (dd !== this.dropdown) {
+                        dd.classList.remove('show');
+                        dd.parentElement.querySelector('.multi-select-container').classList.remove('active');
+                    }
+                });
+
+                this.dropdown.classList.toggle('show');
+                this.container.classList.toggle('active');
+            }
+
+            addSelection(value, label) {
+                this.selectedValues.add(value);
+                this.updateDisplay();
+            }
+
+            removeSelection(value) {
+                this.selectedValues.delete(value);
+
+                // Uncheck the checkbox
+                const option = Array.from(this.options).find(opt =>
+                    opt.querySelector('input[type="checkbox"]').value === value
+                );
+                if (option) {
+                    option.querySelector('input[type="checkbox"]').checked = false;
+                    option.classList.remove('selected');
+                }
+
+                this.updateDisplay();
+            }
+
+            updateDisplay() {
+                this.selectedItemsContainer.innerHTML = '';
+
+                if (this.selectedValues.size === 0) {
+                    this.selectedItemsContainer.innerHTML = `<span class="placeholder-text">Select ${this.name}</span>`;
+                } else {
+                    this.selectedValues.forEach(value => {
+                        const option = Array.from(this.options).find(opt =>
+                            opt.querySelector('input[type="checkbox"]').value === value
+                        );
+                        const label = option.querySelector('label').textContent;
+
+                        const item = document.createElement('div');
+                        item.className = 'selected-item';
+                        item.innerHTML = `
+                            ${label}
+                            <span class="remove-btn" data-value="${value}">×</span>
+                        `;
+
+                        const removeBtn = item.querySelector('.remove-btn');
+                        removeBtn.addEventListener('click', (e) => {
+                            e.stopPropagation();
+                            this.removeSelection(value);
+                        });
+
+                        this.selectedItemsContainer.appendChild(item);
+                    });
+                }
+            }
+
+            getSelectedValues() {
+                return Array.from(this.selectedValues);
+            }
+
+            reset() {
+                this.selectedValues.clear();
+                this.options.forEach(option => {
+                    option.querySelector('input[type="checkbox"]').checked = false;
+                    option.classList.remove('selected');
+                });
+                this.updateDisplay();
+            }
+        }
+
+        // Initialize all multi-selects
+        const multiSelects = {};
+        document.querySelectorAll('.multi-select').forEach(element => {
+            const name = element.getAttribute('data-name');
+            multiSelects[name] = new MultiSelect(element);
+        });
+
+        // Close dropdowns when clicking outside
+        document.addEventListener('click', () => {
+            document.querySelectorAll('.multi-select-dropdown').forEach(dropdown => {
+                dropdown.classList.remove('show');
+                dropdown.parentElement.querySelector('.multi-select-container').classList.remove('active');
+            });
+        });
+
+        // Form submission
+        document.getElementById('sofiaForm').addEventListener('submit', async function (e) {
+            e.preventDefault();
+
+            const submitBtn = document.querySelector('.submit-btn');
+            const successMessage = document.getElementById('successMessage');
+            const errorMessage = document.getElementById('errorMessage');
+
+            // Hide previous messages
+            successMessage.style.display = 'none';
+            errorMessage.style.display = 'none';
+
+            // Show loading state
+            submitBtn.textContent = 'Submitting...';
+            submitBtn.disabled = true;
+
+            // Collect form data
+            const formData = new FormData(this);
+
+            // Create data object
+            const data = {
+                name: formData.get('name'),
+                email: formData.get('email'),
+                campaign: formData.get('campaign'),
+                mainUrl: formData.get('mainUrl'),
+                briefInfo: formData.get('briefInfo'),
+                channels: multiSelects['channels'].getSelectedValues(),
+                sizes: multiSelects['sizes'].getSelectedValues(),
+                types: multiSelects['types'].getSelectedValues(),
+                campaignPeriod: formData.get('campaignPeriod'),
+                estimatedVolume: formData.get('estimatedVolume'),
+                clientname: formData.get('clientname'),
+                brandname: formData.get('brandname'),
+                vertical: formData.get('vertical')
+            };
+
+            try {
+                const response = await fetch('https://jokra.app.n8n.cloud/webhook/e5e222f8-d20f-458d-8d30-d3540199b22e', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                if (response.ok) {
+                    successMessage.style.display = 'block';
+                    this.reset();
+
+                    // Reset all multi-selects
+                    Object.values(multiSelects).forEach(ms => ms.reset());
+
+                    // Scroll to success message
+                    successMessage.scrollIntoView({ behavior: 'smooth' });
+                } else {
+                    throw new Error('Network response was not ok');
+                }
+
+            } catch (error) {
+                console.error('Error:', error);
+                errorMessage.style.display = 'block';
+                errorMessage.scrollIntoView({ behavior: 'smooth' });
+            } finally {
+                // Reset button state
+                submitBtn.textContent = 'Submit';
+                submitBtn.disabled = false;
+            }
+        });
+    </script>
+</body>
+
+</html>
