@@ -369,6 +369,19 @@
                 font-size: 2.5rem;
             }
         }
+
+        .type-main {
+            font-weight: 700;
+            padding: 10px 15px;
+            background: rgba(139, 95, 191, 0.03);
+        }
+
+        .type-sub {
+            padding-left: 28px;
+        }
+        .type-sub-sub{
+            padding-left: 48px;
+        }
     </style>
 </head>
 
@@ -565,93 +578,128 @@
                                     <span class="placeholder-text">Select types</span>
                                 </div>
                             </div>
+                            <!-- add this CSS (put near your existing styles) -->
+
                             <div class="multi-select-dropdown">
-                                <!-- Form -->
-                                <div class="multi-select-option" data-value="conversational">
+
+                                <!-- FORM (main) -->
+                                
+                                <div class="multi-select-option type-main" data-value="conversational">
                                     <input type="checkbox" id="type-conversational" value="conversational">
-                                    <label for="type-conversational"><strong>Form:</strong> Conversational</label>
+                                    <label for="type-conversational"><strong>Conversational</strong></label>
                                 </div>
-                                <div class="multi-select-option" data-value="chatbot">
+                                <div class="multi-select-option type-sub" data-value="chatbot">
                                     <input type="checkbox" id="type-chatbot" value="chatbot">
                                     <label for="type-chatbot">Chatbot</label>
                                 </div>
-                                <div class="multi-select-option" data-value="quiz">
+                                <div class="multi-select-option type-sub" data-value="quiz">
                                     <input type="checkbox" id="type-quiz" value="quiz">
                                     <label for="type-quiz">Quiz</label>
                                 </div>
-                                <div class="multi-select-option" data-value="poll">
+                                <div class="multi-select-option type-sub" data-value="poll">
                                     <input type="checkbox" id="type-poll" value="poll">
                                     <label for="type-poll">Poll</label>
                                 </div>
-                                <div class="multi-select-option" data-value="survey">
+                                <div class="multi-select-option type-sub" data-value="survey">
                                     <input type="checkbox" id="type-survey" value="survey">
                                     <label for="type-survey">Survey</label>
                                 </div>
 
-                                <!-- Video -->
-                                <div class="multi-select-option" data-value="video">
-                                    <input type="checkbox" id="type-video" value="video">
-                                    <label for="type-video"><strong>Video</strong></label>
+                                <!-- VIDEO (main) -->
+                                <div class="multi-select-option type-main" data-value="video-main">
+                                    <input type="checkbox" id="type-video-main" value="video-main">
+                                    <label for="type-video-main"><strong>Video</strong></label>
                                 </div>
-                                <div class="multi-select-option" data-value="stories">
+                               
+                                <div class="multi-select-option type-sub" data-value="stories">
                                     <input type="checkbox" id="type-stories" value="stories">
                                     <label for="type-stories">Stories</label>
                                 </div>
-                                <div class="multi-select-option" data-value="video-generation">
+                                <div class="multi-select-option type-sub" data-value="video-generation">
                                     <input type="checkbox" id="type-video-generation" value="video-generation">
-                                    <label for="type-video-generation">Video generation</label>
+                                    <label for="type-video-generation">Video Generation</label>
                                 </div>
 
-                                <!-- Content Pulse -->
-                                <div class="multi-select-option" data-value="content-pulse">
-                                    <input type="checkbox" id="type-content-pulse" value="content-pulse">
-                                    <label for="type-content-pulse">Content Pulse</label>
-                                </div>
-
-                                <!-- Showrooms -->
-                                <div class="multi-select-option" data-value="showrooms">
+                                <!-- SHOWROOMS (main) -->
+                                <div class="multi-select-option type-main" data-value="showrooms">
                                     <input type="checkbox" id="type-showrooms" value="showrooms">
-                                    <label for="type-showrooms">Showrooms</label>
+                                    <label for="type-showrooms"><strong>Showrooms</strong></label>
                                 </div>
 
-                                <!-- Map Locator -->
+                                <!-- CONTENT PULSE (main) -->
+                                <div class="multi-select-option type-sub" data-value="content-pulse-main">
+                                    <input type="checkbox" id="type-content-pulse-main" value="content-pulse-main">
+                                    <label for="type-content-pulse-main">Content Pulse</label>
+                                </div>
+                                <div class="multi-select-option type-sub" data-value="sports-ticker">
+                                    <input type="checkbox" id="type-sports-ticker" value="sports-ticker">
+                                    <label for="type-sports-ticker">Sports Ticker</label>
+                                </div>
+                                <div class="multi-select-option type-sub" data-value="stocks-ticker">
+                                    <input type="checkbox" id="type-stocks-ticker" value="stocks-ticker">
+                                    <label for="type-stocks-ticker">Stocks Ticker</label>
+                                </div>
+                                <div class="multi-select-option type-sub" data-value="culture">
+                                    <input type="checkbox" id="type-culture" value="culture">
+                                    <label for="type-culture">Culture</label>
+                                </div>
+
+                                <!-- MAP / COUNTDOWN / WEATHER -->
                                 <div class="multi-select-option" data-value="map-locator">
                                     <input type="checkbox" id="type-map-locator" value="map-locator">
-                                    <label for="type-map-locator">Map Locator</label>
+                                    <label for="type-map-locator"><strong>Map Locator</strong></label>
                                 </div>
-
-                                <!-- Countdown -->
-                                <div class="multi-select-option" data-value="countdown">
+                                <div class="multi-select-option type-main" data-value="countdown">
                                     <input type="checkbox" id="type-countdown" value="countdown">
-                                    <label for="type-countdown">Countdown</label>
+                                    <label for="type-countdown"><strong>Countdown</strong></label>
+                                </div>
+                                <div class="multi-select-option type-sub" data-value="weather-1">
+                                    <input type="checkbox" id="type-weather-1" value="weather-1">
+                                    <label for="type-weather-1">Weather</label>
                                 </div>
 
-                                <!-- DCO -->
-                                <div class="multi-select-option" data-value="by-base-signals">
-                                    <input type="checkbox" id="type-by-base-signals" value="by-base-signals">
-                                    <label for="type-by-base-signals"><strong>DCO:</strong> By Base signals</label>
+                                <div class="multi-select-option type-sub" data-value="pause-ads">
+                                    <input type="checkbox" id="type-pause-ads" value="pause-ads">
+                                    <label for="type-pause-ads">Pause Ads</label>
                                 </div>
-                                <div class="multi-select-option" data-value="by-archetype">
-                                    <input type="checkbox" id="type-by-archetype" value="by-archetype">
-                                    <label for="type-by-archetype">By Archetype</label>
+
+                                <!-- DCO (main) -->
+                                <div class="multi-select-option type-main" data-value="dco-main">
+                                    <input type="checkbox" id="type-dco-main" value="dco-main">
+                                    <label for="type-dco-main"><strong>DCO</strong></label>
                                 </div>
-                                <div class="multi-select-option" data-value="by-content">
-                                    <input type="checkbox" id="type-by-content" value="by-content">
-                                    <label for="type-by-content">By Content</label>
+                                <div class="multi-select-option type-sub" data-value="dco-base">
+                                    <input type="checkbox" id="type-dco-base" value="dco-base">
+                                    <label for="type-dco-base">By Base Signals</label>
                                 </div>
-                                <div class="multi-select-option" data-value="by-multi-formats">
-                                    <input type="checkbox" id="type-by-multi-formats" value="by-multi-formats">
-                                    <label for="type-by-multi-formats">By Multi Formats</label>
+                                <div class="multi-select-option type-sub" data-value="dco-archetype">
+                                    <input type="checkbox" id="type-dco-archetype" value="dco-archetype">
+                                    <label for="type-dco-archetype">By Archetype</label>
                                 </div>
-                                <div class="multi-select-option" data-value="micro-augmentations">
-                                    <input type="checkbox" id="type-micro-augmentations" value="micro-augmentations">
-                                    <label for="type-micro-augmentations">Micro Augmentations</label>
+                                <div class="multi-select-option type-sub" data-value="dco-content">
+                                    <input type="checkbox" id="type-dco-content" value="dco-content">
+                                    <label for="type-dco-content">By Content</label>
                                 </div>
-                                <div class="multi-select-option" data-value="weather">
-                                    <input type="checkbox" id="type-weather" value="weather">
-                                    <label for="type-weather">Weather</label>
+                                <div class="multi-select-option type-sub" data-value="dco-multi-formats">
+                                    <input type="checkbox" id="type-dco-multi-formats" value="dco-multi-formats">
+                                    <label for="type-dco-multi-formats"><strong>By Multi Formats</strong></label>
                                 </div>
+
+                                <!-- MICRO AUGMENTATIONS (main) -->
+                                <div class="multi-select-option type-sub-sub" data-value="micro-main">
+                                    <input type="checkbox" id="type-micro-main" value="micro-main">
+                                    <label for="type-micro-main">Micro Augmentations</label>
+                                </div>
+
+
+                                <!-- SECOND WEATHER (client-specified duplicate at end) -->
+                                <div class="multi-select-option type-sub-sub" data-value="weather-2">
+                                    <input type="checkbox" id="type-weather-2" value="weather-2">
+                                    <label for="type-weather-2">Weather</label>
+                                </div>
+
                             </div>
+
 
                         </div>
                     </div>
