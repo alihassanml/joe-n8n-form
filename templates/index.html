@@ -385,15 +385,6 @@
         .type-sub-sub {
             padding-left: 48px;
         }
-
-        .row {
-            display: flex;
-            gap: 10px;
-        }
-
-        .half {
-            width: 50%;
-        }
     </style>
 </head>
 
@@ -471,82 +462,50 @@
                         </div>
                     </div>
 
-
-
-                    <div class="row">
-                        <div class="half">
-                            <div class="form-group">
-                                <label for="vertical">Vertical</label>
-                                <select id="vertical" name="vertical" required>
-                                    <option value="">Select Vertical</option>
-                                    <option value="Fashion & Apparel">Fashion & Apparel</option>
-                                    <option value="Automotive">Automotive</option>
-                                    <option value="Motored Vehicles">Motored Vehicles</option>
-                                    <option value="Aeronotics">Aeronotics</option>
-                                    <option value="Electronics">Electronics</option>
-                                    <option value="Tech">Tech</option>
-                                    <option value="Health & Wellness">Health & Wellness</option>
-                                    <option value="Food & Beverage">Food & Beverage</option>
-                                    <option value="Pharmaceuticals">Pharmaceuticals</option>
-                                    <option value="Home & Living">Home & Living</option>
-                                    <option value="Travel & Hospitality">Travel & Hospitality</option>
-                                    <option value="Finance & Insurance">Finance & Insurance</option>
-                                    <option value="Entertainment & Media">Entertainment & Media</option>
-                                    <option value="Education">Education</option>
-                                    <option value="Sports & Outdoor">Sports & Outdoor</option>
-                                    <option value="Luxury Goods">Luxury Goods</option>
-                                    <option value="Pet Products">Pet Products</option>
-                                    <option value="CPG">CPG</option>
-                                    <option value="Food Service & Hospitality">Food Service & Hospitality</option>
-                                    <option value="Employment & Jobs">Employment & Jobs</option>
-                                    <option value="Digital">Digital</option>
-                                    <option value="Unsure">Unsure</option>
-                                    <option value="Other Services">Other Services</option>
-                                    <option value="Alcohol">Alcohol</option>
-                                    <option value="Retail">Retail</option>
-                                    <option value="Cosmetics">Cosmetics</option>
-                                    <option value="Telecom">Telecom</option>
-                                    <option value="Lottery">Lottery</option>
-                                    <option value="Government">Government</option>
-                                    <option value="Utilities">Utilities</option>
-                                    <option value="Tabacco">Tabacco</option>
-                                    <option value="Banking">Banking</option>
-                                    <option value="Recreational watercraft">Recreational watercraft</option>
-                                    <option value="Beauty & Cosmetics">Beauty & Cosmetics</option>
-                                    <option value="Elections">Elections</option>
-                                    <option value="Event">Event</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <div class="half">
-                            <div class="form-group">
-                                <label>Select channels (multiple)</label>
-                                <div class="multi-select" data-name="channels">
-                                    <div class="multi-select-container">
-                                        <div class="selected-items">
-                                            <span class="placeholder-text">Select channels</span>
-                                        </div>
-                                    </div>
-                                    <div class="multi-select-dropdown">
-                                        <div class="multi-select-option" data-value="display">
-                                            <input type="checkbox" id="channel-display" value="display">
-                                            <label for="channel-display">Display</label>
-                                        </div>
-                                        <div class="multi-select-option" data-value="olv">
-                                            <input type="checkbox" id="channel-olv" value="olv">
-                                            <label for="channel-olv">OLV</label>
-                                        </div>
-                                        <div class="multi-select-option" data-value="ctv">
-                                            <input type="checkbox" id="channel-ctv" value="ctv">
-                                            <label for="channel-ctv">CTV</label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="form-group">
+                        <label for="vertical">Vertical</label>
+                        <select id="vertical" name="vertical" required>
+                            <option value="">Select Vertical</option>
+                            <option value="Fashion & Apparel">Fashion & Apparel</option>
+                            <option value="Automotive">Automotive</option>
+                            <option value="Motored Vehicles">Motored Vehicles</option>
+                            <option value="Aeronotics">Aeronotics</option>
+                            <option value="Electronics">Electronics</option>
+                            <option value="Tech">Tech</option>
+                            <option value="Health & Wellness">Health & Wellness</option>
+                            <option value="Food & Beverage">Food & Beverage</option>
+                            <option value="Pharmaceuticals">Pharmaceuticals</option>
+                            <option value="Home & Living">Home & Living</option>
+                            <option value="Travel & Hospitality">Travel & Hospitality</option>
+                            <option value="Finance & Insurance">Finance & Insurance</option>
+                            <option value="Entertainment & Media">Entertainment & Media</option>
+                            <option value="Education">Education</option>
+                            <option value="Sports & Outdoor">Sports & Outdoor</option>
+                            <option value="Luxury Goods">Luxury Goods</option>
+                            <option value="Pet Products">Pet Products</option>
+                            <option value="CPG">CPG</option>
+                            <option value="Food Service & Hospitality">Food Service & Hospitality</option>
+                            <option value="Employment & Jobs">Employment & Jobs</option>
+                            <option value="Digital">Digital</option>
+                            <option value="Unsure">Unsure</option>
+                            <option value="Other Services">Other Services</option>
+                            <option value="Alcohol">Alcohol</option>
+                            <option value="Retail">Retail</option>
+                            <option value="Cosmetics">Cosmetics</option>
+                            <option value="Telecom">Telecom</option>
+                            <option value="Lottery">Lottery</option>
+                            <option value="Government">Government</option>
+                            <option value="Utilities">Utilities</option>
+                            <option value="Tabacco">Tabacco</option>
+                            <option value="Banking">Banking</option>
+                            <option value="Recreational watercraft">Recreational watercraft</option>
+                            <option value="Beauty & Cosmetics">Beauty & Cosmetics</option>
+                            <option value="Elections">Elections</option>
+                            <option value="Event">Event</option>
+                        </select>
                     </div>
 
+                   
 
                     <div class="form-row">
                         <div class="form-group">
@@ -566,7 +525,30 @@
                             placeholder="Provide some information (optional)"></textarea>
                     </div>
 
-
+                    <div class="form-group">
+                        <label>Select channels (multiple)</label>
+                        <div class="multi-select" data-name="channels">
+                            <div class="multi-select-container">
+                                <div class="selected-items">
+                                    <span class="placeholder-text">Select channels</span>
+                                </div>
+                            </div>
+                            <div class="multi-select-dropdown">
+                                <div class="multi-select-option" data-value="display">
+                                    <input type="checkbox" id="channel-display" value="display">
+                                    <label for="channel-display">Display</label>
+                                </div>
+                                <div class="multi-select-option" data-value="olv">
+                                    <input type="checkbox" id="channel-olv" value="olv">
+                                    <label for="channel-olv">OLV</label>
+                                </div>
+                                <div class="multi-select-option" data-value="ctv">
+                                    <input type="checkbox" id="channel-ctv" value="ctv">
+                                    <label for="channel-ctv">CTV</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
                     <div class="form-group">
                         <label>Select sizes (multiple)</label>
