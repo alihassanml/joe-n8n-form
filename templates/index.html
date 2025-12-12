@@ -900,6 +900,20 @@
             const successMessage = document.getElementById('successMessage');
             const errorMessage = document.getElementById('errorMessage');
 
+
+            // RECAPTCHA VALIDATION
+            const recaptcha = grecaptcha.getResponse();
+            if (!recaptcha) {
+                errorMessage.style.display = 'block';
+                errorMessage.textContent = 'Please complete the reCAPTCHA.';
+                submitBtn.textContent = 'Submit';
+                submitBtn.disabled = false;
+                return;
+            }
+
+            data.recaptcha = recaptcha;
+
+
             // Hide previous messages
             successMessage.style.display = 'none';
             errorMessage.style.display = 'none';
