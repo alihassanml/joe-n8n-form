@@ -913,7 +913,6 @@
                 return;
             }
 
-            data.recaptcha = recaptcha;
 
 
             // Hide previous messages
@@ -946,6 +945,7 @@
                 priority: document.getElementById("priority").value,
 
             };
+            data.recaptcha = recaptcha;
 
             try {
                 const response = await fetch('https://jokra.app.n8n.cloud/webhook/e5e222f8-d20f-458d-8d30-d3540199b22e', {
